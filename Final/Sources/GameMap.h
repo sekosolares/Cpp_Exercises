@@ -26,13 +26,19 @@ class GameMap {
 		}
 
 		// Funcion que obtiene coordenadas de Player y actualiza el mapa.
-		void SetPlayerCell(int PlayerX, int PlayerY) {
+		bool SetPlayerCell(int PlayerX, int PlayerY) {
 			//cout << "Las coordenadas del jugador estan en: " << PlayerX << ", " << PlayerY << endl;
-			if (PlayerCell != NULL) {
-				PlayerCell->id = 0;
+			if (!cells[PlayerY][PlayerX].IsBlocked()) {
+				if (PlayerCell != NULL) {
+					PlayerCell->id = 0;
+				}
+				PlayerCell = &cells[PlayerY][PlayerX];
+				PlayerCell->id = 'A';
+
+				return true;
+			} else {
+				return false;
 			}
-			PlayerCell = &cells[PlayerY][PlayerX];
-			PlayerCell->id = 'A';
 		}
 	protected:
 		void LoadMapFromFile() {

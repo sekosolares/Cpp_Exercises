@@ -7,6 +7,13 @@ class MapCell {
 			id = 0;
 		}
 		char id;
+
+		bool IsBlocked() {
+			if (id == '5')
+				return true;
+			else
+				return false;
+		}
 	protected:
 
 	private:

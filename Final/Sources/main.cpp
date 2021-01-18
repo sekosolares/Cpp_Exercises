@@ -14,8 +14,12 @@ int main() {
 
 	while (!isGameOver) {
 		Hero.CallInput();
-		Map.SetPlayerCell(Hero.GetX(), Hero.GetY());
-		Map.Draw();
+		if(Map.SetPlayerCell(Hero.GetX(), Hero.GetY()))
+			Map.Draw();
+		else {
+			Hero.ResetToSafePosition();
+			Map.Draw();
+		}
 	}
 
 	return 0;

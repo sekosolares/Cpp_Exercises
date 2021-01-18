@@ -18,18 +18,22 @@ class Player {
 
 			switch(UserInput) {
 				case 'w':
+					lastY = y;
 					--y;
 //					cout << "Player Up" << endl;
 					break;
 				case 's':
+					lastY = y;
 					++y;
 //					cout << "Player Down" << endl;
 					break;
 				case 'a':
+					lastX = x;
 					--x;
 //					cout << "Player Left" << endl;
 					break;
 				case 'd':
+					lastX = x;
 					++x;
 //					cout << "Player Right" << endl;
 					break;
@@ -37,14 +41,28 @@ class Player {
 //			cout << "Player at coord: " << x << ", " << y << endl;
 		}
 
+		void ResetToSafePosition() {
+			x = lastX;
+			y = lastY;
+		}
+
 		int GetX() {
 			return x;
 		}
+
 		int GetY() {
 			return y;
 		}
+
+		int GetLastY() {
+			return lastY;
+		}
+
+		int GetLastX() {
+			return lastX;
+		}
 	protected:
-		int x, y;
+		int x, y, lastX, lastY;
 	private:
 };
 
