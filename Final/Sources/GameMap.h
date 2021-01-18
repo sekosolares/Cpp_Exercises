@@ -20,7 +20,6 @@ class GameMap {
 
 		void DrawVictory() {
 			string line;
-			int row = 0;
 
 			ifstream MyFile("Victory.txt");
 
@@ -28,7 +27,6 @@ class GameMap {
 				while( getline(MyFile, line) ) {
 					cout << line << endl;
 				}
-				cin >> line;
 			} else {
 				cout << "FATAL ERROR: COULD NOT DRAW VICTORY!" << endl;
 			}
@@ -36,7 +34,6 @@ class GameMap {
 
 		void DrawIntro() {
 			string line;
-			int row = 0;
 
 			ifstream MyFile("Intro.txt");
 
@@ -65,7 +62,8 @@ class GameMap {
 			if (!cells[PlayerY][PlayerX].IsBlocked()) {
 				if (cells[PlayerY][PlayerX].id == 'O') {
 					DrawVictory();
-					return true;
+					IsGameOver = true;
+					return false;
 				} else {
 					if (PlayerCell != NULL) {
 						PlayerCell->id = 0;

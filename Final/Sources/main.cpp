@@ -13,7 +13,7 @@ int main() {
 	Map.DrawIntro();
 	Map.Draw();
 
-	while (!Map.isGameOver) {
+	while (!Map.IsGameOver) {
 		cout << "\nMove using W A S D" << endl;
 		Hero.CallInput();
 		if(Map.SetPlayerCell(Hero.GetX(), Hero.GetY()))
