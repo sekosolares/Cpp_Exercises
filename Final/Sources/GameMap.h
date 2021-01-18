@@ -2,6 +2,7 @@
 #define GAMEMAP_H
 #include "MapCell.h"
 #include <iostream>
+#include <fstream>
 
 using namespace std;
 
@@ -9,6 +10,7 @@ class GameMap {
 	public:
 		GameMap() {
 			PlayerCell = NULL;
+			LoadMapFromFile();
 		}
 
 		MapCell* PlayerCell;
@@ -33,7 +35,16 @@ class GameMap {
 			PlayerCell->id = 1;
 		}
 	protected:
+		void LoadMapFromFile() {
+			string line;
+			ifstream MyFile("Map.txt");
 
+			if (MyFile.is_open()) {
+				
+			} else {
+				cout << "FATAL ERROR: MAP FILE COULD NOT BE LOADED!" << endl;
+			}
+		}
 	private:
 
 };
