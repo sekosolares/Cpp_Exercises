@@ -6,13 +6,15 @@
 using namespace std;
 
 int main() {
-	bool isGameOver = false;
 	GameMap Map;
 	Player Hero;
 
-	cout << "Inica el juego!!\n" << endl;
 
-	while (!isGameOver) {
+	Map.DrawIntro();
+	Map.Draw();
+
+	while (!Map.isGameOver) {
+		cout << "\nMove using W A S D" << endl;
 		Hero.CallInput();
 		if(Map.SetPlayerCell(Hero.GetX(), Hero.GetY()))
 			Map.Draw();

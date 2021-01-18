@@ -11,10 +11,44 @@ class GameMap {
 		GameMap() {
 			PlayerCell = NULL;
 			LoadMapFromFile();
+			IsGameOver = false;
 		}
 
 		MapCell* PlayerCell;
 		MapCell cells[15][10];
+		bool IsGameOver;
+
+		void DrawVictory() {
+			string line;
+			int row = 0;
+
+			ifstream MyFile("Victory.txt");
+
+			if (MyFile.is_open()) {
+				while( getline(MyFile, line) ) {
+					cout << line << endl;
+				}
+				cin >> line;
+			} else {
+				cout << "FATAL ERROR: COULD NOT DRAW VICTORY!" << endl;
+			}
+		}
+
+		void DrawIntro() {
+			string line;
+			int row = 0;
+
+			ifstream MyFile("Intro.txt");
+
+			if (MyFile.is_open()) {
+				while( getline(MyFile, line) ) {
+					cout << line << endl;
+				}
+				cin >> line;
+			} else {
+				cout << "FATAL ERROR: COULD NOT DRAW INTRO" << endl;
+			}
+		}
 
 		void Draw() {
 			for (int i = 0; i < 15; ++i) {
@@ -29,11 +63,16 @@ class GameMap {
 		bool SetPlayerCell(int PlayerX, int PlayerY) {
 			//cout << "Las coordenadas del jugador estan en: " << PlayerX << ", " << PlayerY << endl;
 			if (!cells[PlayerY][PlayerX].IsBlocked()) {
-				if (PlayerCell != NULL) {
-					PlayerCell->id = 0;
+				if (cells[PlayerY][PlayerX].id == 'O') {
+					DrawVictory();
+					return true;
+				} else {
+					if (PlayerCell != NULL) {
+						PlayerCell->id = 0;
+					}
+					PlayerCell = &cells[PlayerY][PlayerX];
+					PlayerCell->id = 'A';
 				}
-				PlayerCell = &cells[PlayerY][PlayerX];
-				PlayerCell->id = 'A';
 
 				return true;
 			} else {
