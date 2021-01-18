@@ -32,15 +32,24 @@ class GameMap {
 				PlayerCell->id = 0;
 			}
 			PlayerCell = &cells[PlayerY][PlayerX];
-			PlayerCell->id = 1;
+			PlayerCell->id = 'A';
 		}
 	protected:
 		void LoadMapFromFile() {
 			string line;
+			int row = 0;
 			ifstream MyFile("Map.txt");
 
 			if (MyFile.is_open()) {
-				
+				while(getline(MyFile, line)) {
+					for (int i = 0; i < line.length(); ++i) {
+						if (line[i] == '0')
+							cells[row][i].id = 0;
+						else
+							cells[row][i].id = line[i];
+					}
+					++row;
+				}
 			} else {
 				cout << "FATAL ERROR: MAP FILE COULD NOT BE LOADED!" << endl;
 			}

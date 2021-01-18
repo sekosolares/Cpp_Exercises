@@ -6,7 +6,7 @@ class MapCell {
 		MapCell() {
 			id = 0;
 		}
-		int id;
+		char id;
 	protected:
 
 	private:
