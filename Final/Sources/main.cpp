@@ -14,6 +14,7 @@ int main() {
 
 	while (!isGameOver) {
 		Hero.CallInput();
+		Map.SetPlayerCell(Hero.GetX(), Hero.GetY());
 		Map.Draw();
 	}
 
